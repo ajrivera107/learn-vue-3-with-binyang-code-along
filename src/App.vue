@@ -73,6 +73,7 @@ function changeWizard1Wand() {
   }
 }
 
+
 watch(
   () => wizard1.value.name,
   (newValue, oldValue) => {
@@ -83,7 +84,6 @@ watch(
     )
   }
 )
-
 watch(
   () => wizard1.value.wand,
   (newValue, oldValue) => {
