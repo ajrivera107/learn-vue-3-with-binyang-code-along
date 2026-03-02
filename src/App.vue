@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref } from "vue";
-import BlogPosts from "./BlogPosts.vue";
+import BlogPosts from "./Blogposts.vue";
 let posts = ref([
   {
     id: 1,
