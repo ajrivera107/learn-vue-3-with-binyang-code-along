@@ -5,9 +5,12 @@ Hello Vue!
 </template>
 
 <script setup>
-
+import BlogPosts from './BlogPosts.vue';
+let posts = ref([
+  
+])
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
