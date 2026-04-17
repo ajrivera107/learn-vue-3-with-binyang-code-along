@@ -18,16 +18,26 @@
 <script setup>
 import { login } from '@/apis/auth'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 const username = ref('')
 const password = ref('')
 
 const router = useRouter()
+const route = useRoute()
 
 async function handleLogin() {
-    await login(username.value, password.value)
-    router.push('/home')
+    try {
+     await login(username.value, password.value)
+
+    const redirectPath = route.query.redirect || { name: 'home'}
+    router.replace(redirectPath)
+        
+    } catch (error) {
+        console.error(error)
+        
+    }
+
 
 }
 

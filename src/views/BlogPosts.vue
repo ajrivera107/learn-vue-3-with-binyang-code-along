@@ -4,7 +4,11 @@
       <BlogPostList> </BlogPostList>
     </aside>
     <main class="blog-post-content-with-sidebar">
-      <router-view class="blog-post-content"></router-view>
+      <router-view class="blog-post-content" v-slot=" { Component }"></router-view>
+      <Transition name="fade" mode="out-in">
+        <component :is="Component" :key="route.path"></component>
+      </Transition>
+
       <router-view name="sidebar"></router-view>
     </main>
   </div>
@@ -31,4 +35,11 @@ import BlogPostList from "@/components/BlogPostList.vue";
     }
   }
 }
+  .fade-enter-from, .fade-leave-to {
+    opacity: 0;
+  }
+
+  .fade-enter-active, .fade-leave-active  {
+    transition: opacity 1s ease;
+  }
 </style>
