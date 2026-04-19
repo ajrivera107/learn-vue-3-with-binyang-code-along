@@ -4,11 +4,13 @@
         <form @submit.prevent="handleLogin" class="login-form">
             <div class="form-group">
                 <label for="username">Username</label>
-                <label type="text" id="username" name="username" v-model="username" required placeholder="Enter your username"></label>
+                <input type="text" id="username" name="username" v-model="username" required
+                    placeholder="Enter your username">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <label type="password" id="password" name="password" v-model="password" required placeholder="Enter your password"></label>
+                <input type="password" id="password" name="password" v-model="password" required
+                    placeholder="Enter your password">
             </div>
             <button type="submit" class="login-button">Login</button>
         </form>
@@ -28,20 +30,14 @@ const route = useRoute()
 
 async function handleLogin() {
     try {
-     await login(username.value, password.value)
-
-    const redirectPath = route.query.redirect || { name: 'home'}
-    router.replace(redirectPath)
-        
+        await login(username.value, password.value)
+        // Redirect to the page the user originally wanted to visit, or fallback to home
+        const redirectPath = route.query.redirect || { name: 'home' }
+        router.replace(redirectPath)
     } catch (error) {
         console.error(error)
-        
     }
-
-
 }
-
-
 </script>
 
 <style lang="scss" scoped>
