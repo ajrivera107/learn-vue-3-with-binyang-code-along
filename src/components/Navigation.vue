@@ -1,14 +1,12 @@
 <template>
   <nav>
-    <router-link :to="{ name: 'home' }">Home</router-link>
-    <router-link :to="{ name: 'blogPosts' }">Blog Posts</router-link>
-    <!-- <router-link :to="{name: 'about'}">About</router-link> -->
-    <a
-      href="#"
-      @click.prevent="goToAbout"
-      :class="{ 'router-link-active': $route.name === 'about' }"
-      >About</a
+    <router-link
+      v-for="route in navigableRoutes"
+      :key="route.path"
+      :to="route.name"
     >
+      {{ route.meta.title }}
+    </router-link>
   </nav>
 </template>
 
@@ -17,9 +15,9 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-function goToAbout() {
-  router.push({ name: "about " });
-}
+const navigableRoutes = router
+  .getRoutes()
+  .filter((route) => route.meta.isNavLink);
 </script>
 
 <style lang="scss" scoped>
